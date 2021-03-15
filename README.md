@@ -1,5 +1,9 @@
 # udacity-data-pipeline
 
+## Start Airflow Server
+```
+/opt/airflow/start.sh
+```
 
 ## Dev Setup
 ```
