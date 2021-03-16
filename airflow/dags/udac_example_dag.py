@@ -3,7 +3,8 @@ import os
 from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators import (StageToRedshiftOperator, LoadFactOperator,
-                                LoadDimensionOperator, DataQualityOperator)
+                                LoadDimensionOperator, DataQualityOperator,
+                              PostgresOperator)
 from helpers import SqlQueries
 
 # AWS_KEY = os.environ.get('AWS_KEY')
@@ -52,10 +53,13 @@ stage_songs_to_redshift = StageToRedshiftOperator(
 #     dag=dag
 # )
 
-# load_user_dimension_table = LoadDimensionOperator(
-#     task_id='Load_user_dim_table',
-#     dag=dag
-# )
+load_user_dimension_table = LoadDimensionOperator(
+    task_id="Load_user_dim_table",
+    dag=dag,
+    redshift_conn_id="redshift",
+    table="users",
+    sql=SqlQueries.user_table_insert
+)
 
 # load_song_dimension_table = LoadDimensionOperator(
 #     task_id='Load_song_dim_table',
@@ -84,3 +88,6 @@ stage_songs_to_redshift = StageToRedshiftOperator(
 
 start_operator >> stage_events_to_redshift
 start_operator >> stage_songs_to_redshift
+
+stage_events_to_redshift >> load_user_dimension_table
+stage_songs_to_redshift >> load_user_dimension_table
