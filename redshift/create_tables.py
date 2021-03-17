@@ -36,7 +36,9 @@ def main():
     conn = psycopg2.connect("host={} dbname={} user={} password={} port={}".format(*config['CLUSTER'].values()))
     cur = conn.cursor()
 
+    print("drop tables")
     drop_tables(cur, conn)
+    print("create tables")
     create_tables(cur, conn)
 
     conn.close()

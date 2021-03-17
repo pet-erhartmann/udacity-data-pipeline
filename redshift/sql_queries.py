@@ -1,5 +1,5 @@
-staging_events_table_drop = "DROP TABLE IF EXISTS staging_events_table"
-staging_songs_table_drop = "DROP TABLE IF EXISTS staging_songs_table"
+staging_events_table_drop = "DROP TABLE IF EXISTS staging_events"
+staging_songs_table_drop = "DROP TABLE IF EXISTS staging_songs"
 songplay_table_drop = "DROP TABLE IF EXISTS songplays"
 user_table_drop = "DROP TABLE IF EXISTS users"
 song_table_drop = "DROP TABLE IF EXISTS songs"
