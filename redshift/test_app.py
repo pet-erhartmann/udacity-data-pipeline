@@ -18,7 +18,7 @@ def list_s3_file():
         print(k["Key"])
 
 
-#create_redshift_cluster.create_redshift_cluster()
+create_redshift_cluster.create_redshift_cluster()
 #delete_redshift_cluster.delete_redshift_cluster()
 create_tables.main()
 #list_s3_file()
