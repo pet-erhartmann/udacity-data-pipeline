@@ -8,6 +8,7 @@ def load_dim_tables_dag(
         table,
         sql,
         columns,
+        truncate_table=False,
         *args, **kwargs):
     dag = DAG(
         f"{parent_dag_name}.{task_id}",
@@ -19,7 +20,8 @@ def load_dim_tables_dag(
         dag=dag,
         redshift_conn_id=redshift_conn_id,
         table=table,
-        sql=sql
+        sql=sql,
+        truncate_table=truncate_table
     )
 
     run_quality_checks = DataQualityOperator(

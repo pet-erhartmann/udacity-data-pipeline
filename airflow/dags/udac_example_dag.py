@@ -120,6 +120,7 @@ time_subdag_task = SubDagOperator(
         table="time",
         sql=SqlQueries.time_table_insert,
         columns=["start_time"],
+        truncate_table=True,
         start_date=start_date,
     ),
     task_id=time_task_id,
